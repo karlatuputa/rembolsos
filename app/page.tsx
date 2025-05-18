@@ -13,12 +13,7 @@ export default function Home() {
           >
             Acceder al Panel de Administrador
           </Link>
-          <Link
-            href="/reembolso/ejemplo123"
-            className="block w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 px-4 rounded-lg transition-colors"
-          >
-            Ver Ejemplo de Reembolso
-          </Link>
+         
         </div>
       </div>
     </div>
