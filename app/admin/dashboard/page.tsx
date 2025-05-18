@@ -55,7 +55,7 @@ export default function PanelAdmin() {
       alert("La CLABE debe tener 18 dígitos numéricos.")
       return false
     }
-    if (!/^\d+(\.\d{1,2})?$/.test(monto)) {
+if (!/^(\d{1,3}(,\d{3})*|\d+)(\.\d{1,2})?$/.test(monto)) {
       alert("El monto debe ser un número válido (ej. 1234.56).")
       return false
     }
@@ -71,7 +71,9 @@ export default function PanelAdmin() {
     const { data, error } = await supabase
       .from('reembolsos')
       .insert({
-        monto: parseFloat(formData.monto),
+    
+        // Eliminar comas antes de parsear
+        monto: parseFloat(formData.monto.replace(/,/g, '')),
         clabe: formData.clabe,
         telefono: formData.telefono || null,
         empresa: formData.empresa,
@@ -166,7 +168,7 @@ export default function PanelAdmin() {
     onChange={(e) => {
       const value = e.target.value;
       // Permite: números, un solo punto, máximo 2 decimales
-      if (value === '' || /^\d*\.?\d{0,2}$/.test(value)) {
+      if (value === '' || /^(\d{1,3}(,\d{3})*|\d+)(\.\d{2})?$/.test(value)) {
         setFormData({...formData, monto: value});
       }
     }}
@@ -182,7 +184,7 @@ export default function PanelAdmin() {
           monto: numValue.toLocaleString('es-MX', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
-            style: 'decimal' // Esto evita el símbolo $
+            style: 'decimal', // Esto evita el símbolo $
 
           })
         });
