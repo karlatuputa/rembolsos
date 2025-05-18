@@ -1,5 +1,5 @@
 // utils/patch-clipboard.js
-export const safeCopyToClipboard = async (text) => {
+export const safeCopyToClipboard = async (text: string) => {
   if (typeof window === 'undefined') return false
   
   try {

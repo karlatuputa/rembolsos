@@ -5,7 +5,7 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Sistema de Reembolsos",
-  description: "Sistema de gestión de reembolsos personalizados",
+  description: "Sistema de gestión de reembolsos",
 }
 
 export default function RootLayout({
