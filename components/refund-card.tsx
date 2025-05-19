@@ -47,10 +47,16 @@ export function RefundCard({
 <div className="bg-white p-6 border-b border-gray-200">
   <h1 className="text-2xl font-bold text-center text-gray-800">Código de reembolso</h1>
   <p className="text-center text-gray-700 font-medium mt-1">{empresa}</p>
-  <p className="text-center text-gray-600 mt-1 text-sm select-text">
-  Teléfono: {telefono ?? "NO DEFINIDO"}
-</p>
 </div>
+ {/* Sección de Teléfono */}
+  {telefono && (
+    <section className="space-y-2">
+      <h2 className="text-xl font-semibold text-gray-700">Teléfono de contacto</h2>
+      <p className="text-lg text-blue-600 font-medium">
+        <a href={`tel:${telefono}`} className="hover:underline">{telefono}</a>
+      </p>
+    </section>
+  )}
 
       {/* Contenido */}
       <div className="p-6 space-y-6">
