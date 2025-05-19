@@ -76,7 +76,7 @@ const enlacePublico = crypto.randomUUID().slice(0, 8)
         // Eliminar comas antes de parsear
         monto: parseFloat(formData.monto.replace(/,/g, '')),
         clabe: formData.clabe,
-        telefono: formData.telefono || null,
+        telefono: formData.telefono,
         empresa: formData.empresa,
         enlace_publico: enlacePublico,
         convenienceText: formData.convenienceText, // Asegúrate de guardar e
