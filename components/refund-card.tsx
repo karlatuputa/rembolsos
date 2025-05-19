@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Copy, Check } from "lucide-react"
+import { Copy, Check, Phone } from "lucide-react"
 import { GeistMono } from "geist/font/mono"
 
 interface RefundCardProps {
@@ -44,11 +44,10 @@ export function RefundCard({
   return (
     <div className="bg-white rounded-2xl shadow-lg max-w-md w-full overflow-hidden">
       {/* Encabezado */}
-<div className="bg-white p-6 border-b border-gray-200">
-  <h1 className="text-2xl font-bold text-center text-gray-800">Código de reembolso</h1>
-  <p className="text-center text-gray-700 font-medium mt-1">{empresa}</p>
-</div>
-
+      <div className="bg-white p-6 border-b border-gray-200">
+        <h1 className="text-2xl font-bold text-center text-gray-800">Código de reembolso</h1>
+        <p className="text-center text-gray-700 font-medium mt-1">{empresa}</p>
+      </div>
 
       {/* Contenido */}
       <div className="p-6 space-y-6">
@@ -108,16 +107,19 @@ export function RefundCard({
             </p>
           </div>
         )}
+
+        {/* Sección de Teléfono */}
+        {telefono && (
+          <div className="pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-center space-x-3 bg-gray-50 rounded-lg p-3">
+              <Phone className="h-5 w-5 text-blue-600" />
+              <span className={`${GeistMono.className} text-gray-700 font-medium text-sm`}>
+                {telefono}
+              </span>
+            </div>
+          </div>
+        )}
       </div>
-       {/* Sección de Teléfono */}
-  {telefono && (
-    <section className="space-y-2">
-      <h2 className="text-xl font-semibold text-gray-700">Teléfono:</h2>
-      <p className="text-lg text-blue-600 font-medium">
-        <a href={`tel:${telefono}`} className="hover:underline">{telefono}</a>
-      </p>
-    </section>
-  )}
     </div>
   )
 }
