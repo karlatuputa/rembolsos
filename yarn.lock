@@ -331,6 +331,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@netlify/plugin-nextjs@^5.11.1":
+  version "5.11.1"
+  resolved "https://registry.npmmirror.com/@netlify/plugin-nextjs/-/plugin-nextjs-5.11.1.tgz#d505d9fffc746d8af7932133536d94d443c1ce53"
+  integrity sha512-JD4JtrhW3R0uDaROfNzmhVoYFvj+GS2ARq7YXVXNFxo+rNyU4wJ6nuDZFTsuoEp4nbIVsm2oPaXyjgqk4pd1EA==
+
 "@next/bundle-analyzer@^15.3.2":
   version "15.3.2"
   resolved "https://registry.npmmirror.com/@next/bundle-analyzer/-/bundle-analyzer-15.3.2.tgz"
