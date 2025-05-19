@@ -98,17 +98,7 @@ export function RefundCard({
             </p>
           </div>
         </section>
-
-        {/* Texto de conveniencia */}
-        {convenienceText && (
-          <div className="mt-4">
-            <p className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-gray-700 whitespace-pre-wrap">
-              {convenienceText}
-            </p>
-          </div>
-        )}
-
-        {/* Sección de Teléfono */}
+{/* Sección de Teléfono */}
         {telefono && (
           <div className="pt-4 border-t border-gray-200">
             <div className="flex items-center justify-center space-x-3 bg-gray-50 rounded-lg p-3">
@@ -119,6 +109,17 @@ export function RefundCard({
             </div>
           </div>
         )}
+        {/* Texto de conveniencia */}
+        {convenienceText && (
+          <div className="mt-4">
+            <p className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-gray-700 whitespace-pre-wrap">
+              {convenienceText}
+            </p>
+          </div>
+        )}
+
+        
+      
       </div>
     </div>
   )
