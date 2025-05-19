@@ -86,17 +86,7 @@ export function RefundCard({
 
         {/* Separador */}
         <div className="border-t border-gray-200"></div>
-{/* Sección de Teléfono */}
-        {telefono && (
-          <div className="pt-4 border-t border-gray-200">
-            <div className="flex items-center justify-center space-x-3 bg-gray-50 rounded-lg p-3">
-              <Phone className="h-5 w-5 text-blue-600" />
-              <span className={`${GeistMono.className} text-gray-700 font-medium text-sm`}>
-                {telefono}
-              </span>
-            </div>
-          </div>
-        )}
+
         {/* Sección de Reembolso de tienda de conveniencia */}
         <section className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-700">Reembolso de tienda de conveniencia</h2>
@@ -107,6 +97,17 @@ export function RefundCard({
               {formatImporte(importe)}
             </p>
           </div>
+          {/* Sección de Teléfono */}
+        {telefono && (
+          <div className="pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-center space-x-3 bg-gray-50 rounded-lg p-3">
+              <Phone className="h-5 w-5 text-blue-600" />
+              <span className={`${GeistMono.className} text-gray-700 font-medium text-sm`}>
+                {telefono}
+              </span>
+            </div>
+          </div>
+        )}
         </section>
 
         {/* Texto de conveniencia */}
@@ -119,7 +120,6 @@ export function RefundCard({
         )}
 
         
-      
       </div>
     </div>
   )
