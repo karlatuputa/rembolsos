@@ -108,8 +108,6 @@ export function RefundCard({
             </div>
           </div>
         )}
-        </section>
-
         {/* Texto de conveniencia */}
         {convenienceText && (
           <div className="mt-4">
@@ -119,6 +117,7 @@ export function RefundCard({
           </div>
         )}
 
+        </section>
         
       </div>
     </div>
