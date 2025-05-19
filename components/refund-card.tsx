@@ -86,18 +86,6 @@ export function RefundCard({
 
         {/* Separador */}
         <div className="border-t border-gray-200"></div>
-
-        {/* Sección de Reembolso de tienda de conveniencia */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">Reembolso de tienda de conveniencia</h2>
-
-          <div>
-            <p className="text-sm text-gray-600 mb-1">Importe del pago (MXN)</p>
-            <p className="text-2xl font-bold text-blue-600">
-              {formatImporte(importe)}
-            </p>
-          </div>
-        </section>
 {/* Sección de Teléfono */}
         {telefono && (
           <div className="pt-4 border-t border-gray-200">
@@ -109,6 +97,18 @@ export function RefundCard({
             </div>
           </div>
         )}
+        {/* Sección de Reembolso de tienda de conveniencia */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-700">Reembolso de tienda de conveniencia</h2>
+
+          <div>
+            <p className="text-sm text-gray-600 mb-1">Importe del pago (MXN)</p>
+            <p className="text-2xl font-bold text-blue-600">
+              {formatImporte(importe)}
+            </p>
+          </div>
+        </section>
+
         {/* Texto de conveniencia */}
         {convenienceText && (
           <div className="mt-4">
