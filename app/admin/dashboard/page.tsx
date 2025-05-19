@@ -4,6 +4,7 @@ import { Copy, Check, Plus, ExternalLink } from "lucide-react"
 import { GeistMono } from "geist/font/mono"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
+import { v4 as uuidv4 } from 'uuid'
 
 type Reembolso = {
   id: string

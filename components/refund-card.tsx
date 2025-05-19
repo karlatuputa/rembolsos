@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Copy, Check, Phone } from "lucide-react"
+import { Copy, Check } from "lucide-react"
 import { GeistMono } from "geist/font/mono"
 
 interface RefundCardProps {
@@ -23,32 +23,36 @@ export function RefundCard({
   estado,
   convenienceText,
 }: RefundCardProps) {
-  const [copiedField, setCopiedField] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
 
   // Función para formatear el importe en formato mexicano sin símbolo $
   const formatImporte = (value: string | number) => {
-    const numValue = typeof value === "string" ? parseFloat(value) : value
-    return new Intl.NumberFormat("es-MX", {
-      style: "decimal",
+    const numValue = typeof value === 'string' ? parseFloat(value) : value
+    return new Intl.NumberFormat('es-MX', {
+      style: 'decimal',
       minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
+      maximumFractionDigits: 2
     }).format(isNaN(numValue) ? 0 : numValue)
   }
 
-  const copyToClipboard = (text: string, field: string) => {
-    if (!text) return
+  const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
-    setCopiedField(field)
-    setTimeout(() => setCopiedField(null), 2000)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
     <div className="bg-white rounded-2xl shadow-lg max-w-md w-full overflow-hidden">
       {/* Encabezado */}
-      <div className="bg-white p-6 border-b border-gray-200">
-        <h1 className="text-2xl font-bold text-center text-gray-800">Código de reembolso</h1>
-        <p className="text-center text-gray-700 font-medium mt-1">{empresa}</p>
-      </div>
+<div className="bg-white p-6 border-b border-gray-200">
+  <h1 className="text-2xl font-bold text-center text-gray-800">Código de reembolso</h1>
+  <p className="text-center text-gray-700 font-medium mt-1">{empresa}</p>
+  {telefono && (
+    <p className="text-center text-gray-600 mt-1 text-sm select-text">
+      Teléfono: <a href={`tel:${telefono}`} className="text-blue-600 hover:underline">{telefono}</a>
+    </p>
+  )}
+</div>
 
       {/* Contenido */}
       <div className="p-6 space-y-6">
@@ -58,7 +62,9 @@ export function RefundCard({
 
           <div>
             <p className="text-sm text-gray-600 mb-1">Importe del pago (MXN)</p>
-            <p className="text-2xl font-bold text-blue-600">{formatImporte(importe)}</p>
+            <p className="text-2xl font-bold text-blue-600">
+              {formatImporte(importe)}
+            </p>
           </div>
 
           <div>
@@ -70,46 +76,17 @@ export function RefundCard({
                 {clabe || ""}
               </div>
               <button
-                onClick={() => copyToClipboard(clabe, "clabe")}
+                onClick={() => copyToClipboard(clabe)}
                 className={`p-3 rounded-r-lg transition-colors ${
-                  copiedField === "clabe"
-                    ? "bg-green-500 text-white"
-                    : "bg-blue-600 hover:bg-blue-700 text-white"
+                  copied ? "bg-green-500 text-white" : "bg-blue-600 hover:bg-blue-700 text-white"
                 }`}
                 aria-label="Copiar CLABE"
               >
-                {copiedField === "clabe" ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
+                {copied ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
               </button>
             </div>
             {!clabe && <p className="text-red-500 text-sm mt-1">Por favor, copie la cuenta CLABE a utilizar</p>}
           </div>
-
-          {/* Teléfono con ícono */}
-          {telefono && (
-            <div>
-              <p className="text-sm text-gray-600 mb-1">Teléfono de contacto</p>
-              <div className="flex items-center">
-                <div className="flex items-center bg-gray-50 border border-gray-300 rounded-l-lg p-3 text-sm space-x-2">
-                  <Phone className="h-5 w-5 text-gray-500" />
-                  <span className={`${GeistMono.className} font-mono`}>{telefono}</span>
-                </div>
-                <button
-                  onClick={() => copyToClipboard(telefono, "telefono")}
-                  className={`p-3 rounded-r-lg transition-colors ${
-                    copiedField === "telefono"
-                      ? "bg-green-500 text-white"
-                      : "bg-blue-600 hover:bg-blue-700 text-white"
-                  }`}
-                  aria-label="Copiar teléfono"
-                >
-                  {copiedField === "telefono" ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
-                </button>
-              </div>
-              <span role="status" aria-live="polite" className="sr-only">
-                {copiedField === "telefono" ? "Teléfono copiado al portapapeles" : ""}
-              </span>
-            </div>
-          )}
         </section>
 
         {/* Separador */}
@@ -121,7 +98,9 @@ export function RefundCard({
 
           <div>
             <p className="text-sm text-gray-600 mb-1">Importe del pago (MXN)</p>
-            <p className="text-2xl font-bold text-blue-600">{formatImporte(importe)}</p>
+            <p className="text-2xl font-bold text-blue-600">
+              {formatImporte(importe)}
+            </p>
           </div>
         </section>
 
