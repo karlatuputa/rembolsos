@@ -66,7 +66,7 @@ if (!/^(\d{1,3}(,\d{3})*|\d+)(\.\d{1,2})?$/.test(monto)) {
     e.preventDefault()
     if (!validarFormulario()) return
 
-    const enlacePublico = Math.random().toString(36).substring(2, 8)
+const enlacePublico = crypto.randomUUID().slice(0, 8)
 
     const { data, error } = await supabase
       .from('reembolsos')
@@ -168,7 +168,7 @@ if (!/^(\d{1,3}(,\d{3})*|\d+)(\.\d{1,2})?$/.test(monto)) {
     onChange={(e) => {
       const value = e.target.value;
       // Permite: números, un solo punto, máximo 2 decimales
-      if (value === '' || /^(\d{1,3}(,\d{3})*|\d+)(\.\d{2})?$/.test(value)) {
+      if (value === '' ||/^\d+(\.\d{1,2})?$/.test(value)) {
         setFormData({...formData, monto: value});
       }
     }}
