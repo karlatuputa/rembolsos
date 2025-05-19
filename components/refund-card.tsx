@@ -25,7 +25,6 @@ export function RefundCard({
 }: RefundCardProps) {
   const [copied, setCopied] = useState(false)
 
-  // Función para formatear el importe en formato mexicano sin símbolo $
   const formatImporte = (value: string | number) => {
     const numValue = typeof value === 'string' ? parseFloat(value) : value
     return new Intl.NumberFormat('es-MX', {
@@ -42,83 +41,77 @@ export function RefundCard({
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg max-w-md w-full overflow-hidden">
+    <div className="bg-white rounded-lg shadow-md max-w-md w-full overflow-hidden border border-gray-200">
       {/* Encabezado */}
-      <div className="bg-white p-6 border-b border-gray-200">
-        <h1 className="text-2xl font-bold text-center text-gray-800">Código de reembolso</h1>
-        <p className="text-center text-gray-700 font-medium mt-1">{empresa}</p>
+      <div className="bg-gray-50 p-6 border-b border-gray-200">
+        <h1 className="text-xl font-bold text-center text-gray-800 uppercase tracking-wide">Comprobante de reembolso</h1>
+        <p className="text-center text-gray-600 text-sm mt-1">{empresa}</p>
       </div>
 
       {/* Contenido */}
-      <div className="p-6 space-y-6">
+      <div className="p-6">
         {/* Sección de Reembolso en línea */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">Reembolso en línea</h2>
-
-          <div>
-            <p className="text-sm text-gray-600 mb-1">Importe del pago (MXN)</p>
-            <p className="text-2xl font-bold text-blue-600">
-              {formatImporte(importe)}
-            </p>
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-gray-700 mb-3 pb-2 border-b border-gray-200">Reembolso en línea</h2>
+          
+          <div className="grid grid-cols-2 gap-4 mb-3">
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Importe (MXN)</p>
+              <p className="text-xl font-bold text-gray-800">
+                {formatImporte(importe)}
+              </p>
+            </div>
           </div>
 
           <div>
-            <p className="text-sm text-gray-600 mb-1">Número de cuenta CLABE</p>
+            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Cuenta CLABE</p>
             <div className="flex items-center">
-              <div
-                className={`${GeistMono.className} flex-1 bg-gray-50 border border-gray-300 rounded-l-lg p-3 font-mono text-sm`}
-              >
+              <div className={`${GeistMono.className} flex-1 bg-gray-50 border border-gray-200 rounded-l-md p-2 text-sm`}>
                 {clabe || ""}
               </div>
               <button
                 onClick={() => copyToClipboard(clabe)}
-                className={`p-3 rounded-r-lg transition-colors ${
-                  copied ? "bg-green-500 text-white" : "bg-blue-600 hover:bg-blue-700 text-white"
+                className={`p-2 rounded-r-md transition-colors ${
+                  copied ? "bg-green-500 text-white" : "bg-gray-200 hover:bg-gray-300 text-gray-700"
                 }`}
                 aria-label="Copiar CLABE"
               >
-                {copied ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
+                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
               </button>
             </div>
-            {!clabe && <p className="text-red-500 text-sm mt-1">Por favor, copie la cuenta CLABE a utilizar</p>}
+            {!clabe && <p className="text-red-500 text-xs mt-1">Por favor, copie la cuenta CLABE a utilizar</p>}
           </div>
-        </section>
+        </div>
 
-        {/* Separador */}
-        <div className="border-t border-gray-200"></div>
-
-        {/* Sección de Reembolso de tienda de conveniencia */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">Reembolso de tienda de conveniencia</h2>
-
-          <div>
-            <p className="text-sm text-gray-600 mb-1">Importe del pago (MXN)</p>
-            <p className="text-2xl font-bold text-blue-600">
-              {formatImporte(importe)}
-            </p>
-          </div>
-          {/* Sección de Teléfono */}
-        {telefono && (
-          <div className="pt-4 border-t border-gray-200">
-            <div className="flex items-center justify-center space-x-3 bg-gray-50 rounded-lg p-3">
-              <Phone className="h-5 w-5 text-blue-600" />
-              <span className={`${GeistMono.className} text-gray-700 font-medium text-sm`}>
-                {telefono}
-              </span>
+        {/* Sección de Reembolso en tienda */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-gray-700 mb-3 pb-2 border-b border-gray-200">Reembolso en tienda</h2>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Importe (MXN)</p>
+              <p className="text-xl font-bold text-gray-800">
+                {formatImporte(importe)}
+              </p>
             </div>
           </div>
-        )}
-        {/* Texto de conveniencia */}
-        {convenienceText && (
-          <div className="mt-4">
-            <p className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-gray-700 whitespace-pre-wrap">
-              {convenienceText}
-            </p>
-          </div>
-        )}
+        </div>
 
-        </section>
-        
+        {/* Información adicional */}
+        <div className="space-y-4">
+          {convenienceText && (
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <p className="text-sm text-gray-700 whitespace-pre-wrap">{convenienceText}</p>
+            </div>
+          )}
+
+          {telefono && (
+            <div className="flex items-center space-x-2 text-sm text-gray-700">
+              <Phone className="h-4 w-4 text-gray-500" />
+              <span className={GeistMono.className}>{telefono}</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
