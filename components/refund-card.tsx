@@ -51,7 +51,7 @@ export function RefundCard({
  {/* Sección de Teléfono */}
   {telefono && (
     <section className="space-y-2">
-      <h2 className="text-xl font-semibold text-gray-700">Teléfono de contacto</h2>
+      <h2 className="text-xl font-semibold text-gray-700">Teléfono:</h2>
       <p className="text-lg text-blue-600 font-medium">
         <a href={`tel:${telefono}`} className="hover:underline">{telefono}</a>
       </p>
