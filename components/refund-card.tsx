@@ -44,7 +44,7 @@ export function RefundCard({
     <div className="bg-white rounded-lg shadow-md max-w-md w-full overflow-hidden border border-gray-200">
       {/* Encabezado */}
       <div className="bg-gray-50 p-6 border-b border-gray-200">
-        <h1 className="text-xl font-bold text-center text-gray-800 uppercase tracking-wide">Comprobante de reembolso</h1>
+        <h1 className="text-xl font-bold text-center text-gray-800 uppercase tracking-wide">Resumen de Pago Pendiente</h1>
         <p className="text-center text-gray-600 text-sm mt-1">{empresa}</p>
       </div>
 
