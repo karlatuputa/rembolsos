@@ -41,7 +41,7 @@ export default function PanelAdmin() {
     const { data, error } = await supabase
       .from('reembolsos')
       .select('*')
-      .order('fecha_creacion', { ascending: false })
+      .order('created_at', { ascending: false })
 
     if (!error && data) setReembolsos(data)
   }
